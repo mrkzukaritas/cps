@@ -13,15 +13,17 @@ print("Project Started: Running continuous smooth sweep...")
 
 try:
     while True:
-        # Smooth Forward Sweep
-        for angle in range(0, 181, 2):
-            servo_board.set_angle(0, angle)
-            time.sleep(0.01)
-            
-        # Smooth Backward Sweep
-        for angle in range(180, -1, -2):
-            servo_board.set_angle(0, angle)
-            time.sleep(0.01)
-            
+        # Mover a la derecha
+        servo_board.set_angle(0, 180)
+        #servo_board.set_angle(1, 180)  # Servo 2
+        print("Derecha")
+        time.sleep(5)
+
+        # Mover a la izquierda
+        servo_board.set_angle(0, 0)
+        #servo_board.set_angle(1, 0)  # Servo 2
+        print("Izquierda")
+        time.sleep(5)
+
 except KeyboardInterrupt:
-    print("Program stopped by user.")
+    print("Programa detenido")
