@@ -11,19 +11,28 @@ servo_board.set_freq(50)
 
 print("Project Started: Running continuous smooth sweep...")
 
+degree = 0
+
 try:
     while True:
-        # Mover a la derecha
-        servo_board.set_angle(0, 180)
-        #servo_board.set_angle(1, 180)  # Servo 2
-        print("Derecha")
-        time.sleep(5)
+        # Move servo first (like do-while)
+        servo_board.set_angle(0, degree)
+        print("Current degree:", degree)
 
-        # Mover a la izquierda
-        servo_board.set_angle(0, 0)
-        #servo_board.set_angle(1, 0)  # Servo 2
-        print("Izquierda")
-        time.sleep(5)
+        mas = input("Enter value to ADD (or 'q' to quit): ")
+
+        if mas == 'q':
+            break
+
+        try:
+            mas = int(mas)
+            degree = degree + mas
+
+            # Limit between 0 and 180
+            degree = max(0, min(180, degree))
+
+        except ValueError:
+            print("Invalid number")
 
 except KeyboardInterrupt:
-    print("Programa detenido")
+    print("Program stopped")
